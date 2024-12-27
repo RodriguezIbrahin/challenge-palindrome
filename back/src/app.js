@@ -1,19 +1,20 @@
-import cors from 'cors';
-import dotenv from 'dotenv';
-import express, { json } from 'express';
+import cors from "cors";
+import dotenv from "dotenv";
+import express, { json } from "express";
+import connectDB from "./data/db.js";
+import palindromeRouter from "./routers/palindrome.routers.js";
+
 dotenv.config();
 
 export const app = express();
 app.use(cors());
 app.use(json());
+connectDB();
 
-/**
- * Routes for the challenge
- */
+app.use("/palindrome", palindromeRouter);
 
-// GET /ping
-app.get('/ping', (req, res) => {
+app.get("/ping", (req, res) => {
   res.json({
-    "message": 'pong',
+    message: "pong",
   });
 });
