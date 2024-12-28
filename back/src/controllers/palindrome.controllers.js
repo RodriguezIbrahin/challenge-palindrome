@@ -2,7 +2,7 @@ import Palindrome from "../models/palindrome.models.js";
 
 export const getPalindrome = async (_req, res) => {
   try {
-    const palindrome = await Palindrome.find();
+    const palindrome = await Palindrome.find().sort({ createdAt: -1 });
     res.status(200).json(palindrome);
   } catch (error) {
     res.json({ message: error.message });
